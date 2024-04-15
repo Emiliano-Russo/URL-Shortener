@@ -55,7 +55,7 @@ app.get("/:id", async (req, res) => {
 
   url = await redisClient.get(id);
   if (url) {
-    myCache.set(id, url); // Guardar en el cache en memoria
+    myCache.set(id, url);
     res.redirect(url);
   } else {
     res.status(404).send("URL not found");
@@ -66,15 +66,17 @@ app.delete("/:id", async (req, res) => {
   const { id } = req.params;
   const url = await redisClient.del(id);
   if (url === 1) {
-    // Redis devuelve 1 si el key fue borrado exitosamente
-    // Ahora eliminamos la entrada del cache en memoria
+    // Redis returns 1 if the key was successfully deleted
+    // Now we delete the cache entry in memory
     myCache.del(id);
     res.status(200).send("URL deleted successfully");
   } else {
-    // Si no se encontro la URL en Redis, intentamos eliminar del cache por si acaso
+    // If the URL was not found in Redis we delete it from the cache just in case
     myCache.del(id);
     res.status(404).send("URL not found");
   }
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = app;

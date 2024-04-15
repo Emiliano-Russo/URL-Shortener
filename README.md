@@ -18,6 +18,8 @@ Definir las siguientes variables de entorno en el sistema o en un archivo `.env`
 
 - `BASE_URL`: URL base utilizada por el backend, por ejemplo, `http://localhost:3010`.
 - `PORT`: Puerto en el que se ejecuta el servidor backend, por ejemplo, `3010`.
+- `REDIS_URL`: URL base utilizada por redis, por ejemplo, `localhost`.
+- `PORT`: Puerto en el que se ejecuta el servidor redis, por ejemplo, `6379`.
 
 ### Frontend
 
@@ -26,6 +28,7 @@ Para el frontend, definir esta variable de entorno en tu sistema o en un archivo
 - `REACT_APP_API_URL`: URL base del backend para las peticiones del frontend, por ejemplo, `http://localhost:3010`.
 
 Para ejecutar este proyecto, necesitarás tener instalado:
+
 - Node.js
 - npm o yarn
 - Redis
